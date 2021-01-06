@@ -2,7 +2,7 @@ package com.example.catalog.domain;
 
 import org.apache.tomcat.jni.Address;
 
-public abstract class Person {
+public abstract class User {
 
     private int id;
     private String fistName;
