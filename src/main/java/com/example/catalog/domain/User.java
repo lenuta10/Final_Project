@@ -1,6 +1,9 @@
 package com.example.catalog.domain;
 
+
+import lombok.Data;
 import org.apache.tomcat.jni.Address;
+@Data
 
 public abstract class User {
 
@@ -8,8 +11,7 @@ public abstract class User {
     private String fistName;
     private String lastName;
     private String phoneNumber;
-    private Address adress;
-    private int age;
     private String email;
+    private String Role;
 
 }
