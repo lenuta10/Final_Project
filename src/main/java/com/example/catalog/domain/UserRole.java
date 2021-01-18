@@ -11,7 +11,6 @@ public class UserRole {
     @Id
     @Column(length = 50)
     @Enumerated(value = EnumType.STRING)
-
     private Role name;
 
 }

@@ -1,17 +1,43 @@
 package com.example.catalog.domain;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.apache.tomcat.jni.Address;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "users")
+public class User {
 
-public abstract class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    private int id;
+    @NotBlank(message = "Firstname is mandatory")
     private String fistName;
+
+    @NotBlank(message = "Lastname is mandatory")
     private String lastName;
     private String phoneNumber;
+
+    @NotBlank(message = "Email is mandatory")
     private String email;
-    private String Role;
+
+    @NotBlank(message = "Role is mandatory")
+    private String role;
+
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Username is mandatory")
+    private String username;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Password is mandatory")
+    private String password;
 
 }
