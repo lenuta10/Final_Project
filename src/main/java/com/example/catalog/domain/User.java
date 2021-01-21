@@ -20,7 +20,7 @@ public class User {
     private long id;
 
     @NotBlank(message = "Firstname is mandatory")
-    private String fistName;
+    private String firstName;
 
     @NotBlank(message = "Lastname is mandatory")
     private String lastName;

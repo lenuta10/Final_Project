@@ -1,28 +1,44 @@
-<form action="#" th:action="@{/adduser}" th:object="${user}" modelAttribute="user" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
-    <label for="firstname">Firstname</label>
-    <input type="text" th:field="*{firstname}" id="firstname" placeholder="Firstname">
-    <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
-    <label for="lastname">Lastname</label>
-    <input type="text" th:field="*{lastname}" id="lastname" placeholder="Lastname">
-    <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
-    <label for="phoneNumber">PhoneNumber</label>
-    <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="PhoneNumber">
-    <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <label for="role">Role</label>
-    <select name="role" id="role">
-        <option value="Student">Student</option>
-        <option value="Professor">Professor</option>
-        <option value="Admin">Admin</option>
-    </select>
-    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
-    <label for="username">Username</label>
-    <input type="text" th:field="*{username}" id="username" placeholder="Username">
-    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-    <label for="password">Password</label>
-    <input type="text" th:field="*{password}" id="password" placeholder="Password">
-    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-    <input type="submit" value="Add User">
+<form action="#" th:action="@{/adduser}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div>
+        <label for="firstName">First name</label>
+        <input type="text" name="firstName" id="firstName" placeholder="Firstname">
+    </div>
+    <br>
+    <div>
+        <label for="lastName">Last name</label>
+        <input type="text" name="lastName" id="lastName" placeholder="Lastname">
+    </div>
+    <br>
+    <div>
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" name="phoneNumber" id="phoneNumber" placeholder="PhoneNumber">
+    </div>
+    <br>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" placeholder="Email">
+    </div>
+    <br>
+    <div>
+        <label for="role">Role</label>
+        <select name="role" id="role">
+            <option value="Student">Student</option>
+            <option value="Professor">Professor</option>
+            <option value="Admin">Admin</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Username">
+    </div>
+    <br>
+    <div>
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password" placeholder="Password">
+    </div>
+    <br>
+    <div>
+        <input type="submit" value="Add User">
+    </div>
 </form>

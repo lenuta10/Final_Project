@@ -2,11 +2,52 @@
       th:action="@{/update/{id}(id=${user.id})}"
       th:object="${user}"
       method="post" xmlns:th="http://www.w3.org/1999/xhtml">
-    <label for="firstname">Firstname</label>
-    <input type="text" th:field="*{firstname}" id="firstname" placeholder="Firstname">
-    <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <input type="submit" value="Update User">
+    <div>
+        <label for="firstName">Firstname</label>
+        <input type="text" th:field="*{firstName}" id="firstName" placeholder="Firstname">
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    </div>
+    <br>
+    <div>
+        <label for="lastName">LastName</label>
+        <input type="text" th:field="*{lastName}" id="lastName" placeholder="LastName">
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    </div>
+    <br>
+    <div>
+        <label for="phoneNumber">PhoneNumber</label>
+        <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="PhoneNumber">
+        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+    </div>
+    <br>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" th:field="*{email}" id="email" placeholder="Email">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+    <br>
+    <div>
+        <label for="role">Role</label>
+        <select name="role" id="role">
+            <option value="Student">Student</option>
+            <option value="Professor">Professor</option>
+            <option value="Admin">Admin</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" th:field="*{username}" id="username" placeholder="Username">
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+    </div>
+    <br>
+    <div>
+        <label for="password">Password</label>
+        <input type="text" th:field="*{password}" id="password" placeholder="Password">
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </div>
+    <br>
+    <div>
+        <input type="submit" value="Update User">
+    </div>
 </form>

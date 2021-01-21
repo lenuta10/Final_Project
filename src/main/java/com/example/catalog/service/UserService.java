@@ -7,6 +7,7 @@ import com.example.catalog.dto.UserViewDto;
 import org.springframework.validation.BindingResult;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -25,6 +26,10 @@ public interface UserService {
 
     void add(User user);
 
-    void delete(Long id);
+    void delete(User user);
+
+    void save(User user);
+
+    Optional<User> findById(Long id);
 
 }

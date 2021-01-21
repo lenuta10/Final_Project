@@ -15,12 +15,12 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig<Enable> extends WebSecurityConfigurerAdapter {
 
     @Autowired
     DataSource dataSource;
 
-    // Enable jdbc authentication
+//    Enable jdbc authentication
 //    @Autowired
 //    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.jdbcAuthentication().dataSource(dataSource);
