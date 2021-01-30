@@ -2,40 +2,30 @@
 <html xmlns = "http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org"
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-    <div th:switch="${users}">
-        <h2 th:case="null">No users yet!</h2>
-        <div th:case="*">
-            <h2>Users</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>PhoneNumber</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="user : ${users}">
-                    <td th:text="${user.firstName}"></td>
-                    <td th:text="${user.lastName}"></td>
-                    <td th:text="${user.phoneNumber}"></td>
-                    <td th:text="${user.email}"></td>
-                    <td th:text="${user.role}"></td>
-                    <td th:text="${user.username}"></td>
-                    <td th:text="${user.password}"></td>
-                    <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <p><a href="/add-user">Add a new user</a></p>
-    </div>
+<head>
+    <title> Structura anului universitar 2020-2021 !</title>
+</head>
+<body>
+<h1>Structura anului universitar 2020-2021 !</h1>
+
+<div>
+    <p><a href="/admin">Sectiunea admin</a></p>
+</div>
+<div>
+    <p><a href="/student">Sectiunea studenti</a></p>
+</div>
+<div>
+    <p><a href="/professor">Sectiunea profesori</a></p>
+</div>
+
+
+<div>
+    <p>Structura anului universitar cuprinde două semestre (semestrul din toamnă şi cel din primăvară).
+    <br>
+        Perioada de vară (lunile iulie, august și septembrie) este dedicată activităţilor de practică de specialitate,
+        <br>
+        desfăşurate de către studenţi în organizații, asociații, diferite instituții, companii. </p>
+</div>
+</body>
 
 </html>

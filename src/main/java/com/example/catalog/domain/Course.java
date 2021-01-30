@@ -2,14 +2,15 @@ package com.example.catalog.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
+@Table(name = "courses")
 public class Course {
 
     @Id
@@ -19,7 +20,9 @@ public class Course {
     @NotBlank(message = "Name is mandatory")
     private String name;
 
-    @NotBlank(message = "Number of credits is mandatory")
+    @NotNull(message = "Number of credits is mandatory")
     private int numberOfCredits;
 
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "course")
+    private List<CourseRegistration> courseRegistrations;
 }

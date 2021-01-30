@@ -48,6 +48,14 @@
     </div>
     <br>
     <div>
+        <label for="group">Group</label>
+        <select name="group" class="form-control" id="group">
+            <option>Selecteaza grupa</option>
+            <option th:each="group: ${classes}" th:value="${group.id}" th:text="${group.name}"></option>
+        </select>
+    </div>
+    <br>
+    <div>
         <input type="submit" value="Update User">
     </div>
 </form>

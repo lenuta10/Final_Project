@@ -4,11 +4,14 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
 @Entity
-@Table(name = "class")
+@Table(name = "classes")
 public class Group {
 
     @Id
@@ -18,7 +21,10 @@ public class Group {
     @NotBlank(message = "Name is mandatory")
     private String name;
 
-    @NotBlank(message = "Year is mandatory")
+    @NotNull(message = "Year is mandatory")
     private int year;
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="group")
+    private List<User> users = new ArrayList<>();
 
 }

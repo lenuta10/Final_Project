@@ -1,13 +1,101 @@
 <!DOCTYPE html>
-<html xmlns = "http://www.w3.org/1999/xhtml"
-      xmlns:th = "http://www.thymeleaf.org"
+<html xmlns = "http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org"
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head>
-    <title>Hello admin!</title>
-</head>
-<body>
-<h1>Hello admin!</h1>
-</body>
+<div th:switch="${users}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>PhoneNumber</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Group</th>
+                <th>Courses</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.group.name}"></td>
+                <td>
+				<span th:each="courseRegistration,iterStat : ${user.courseRegistrations}">
+					<span th:text="${courseRegistration.course.name}"/><th:block th:if="${!iterStat.last}">,</th:block>
+				</span>
+                </td>
+                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/adduser">Add a new user</a></p>
+</div>
+
+<div th:switch="${courses}">
+    <h2 th:case="null">No courses yet!</h2>
+    <div th:case="*">
+        <h2>Courses</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number of credits</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="course : ${courses}">
+                <td th:text="${course.name}"></td>
+                <td th:text="${course.numberOfCredits}"></td>
+                <td><a th:href="@{/editCourse/{id}(id=${course.id})}">Edit</a></td>
+                <td><a th:href="@{/deleteCourse/{id}(id=${course.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/add-course">Add a new course</a></p>
+</div>
+
+<div th:switch="${classes}">
+    <h2 th:case="null">No groups yet!</h2>
+    <div th:case="*">
+        <h2>Groups</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group : ${classes}">
+                <td th:text="${group.name}"></td>
+                <td th:text="${group.year}"></td>
+                <td><a th:href="@{/editGroup/{id}(id=${group.id})}">Edit</a></td>
+                <td><a th:href="@{/deleteGroup/{id}(id=${group.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/add-group">Add a new group</a></p>
+</div>
 
 </html>
