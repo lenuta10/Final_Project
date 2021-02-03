@@ -2,20 +2,38 @@
 <html xmlns = "http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org"
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
+
 <head>
     <title> Structura anului universitar 2020-2021 !</title>
 </head>
 <body>
+<div>
+    <form id="logoutForm" method="POST" th:action="@{/logout}">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+    <a onclick="document.forms['logoutForm'].submit()" style="cursor:pointer">Logout</a>
+ <!--<a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>-->
+</div>
+<!--<h2>Welcome <span sec:authentication="name"></span> </h2>-->
 <h1>Structura anului universitar 2020-2021 !</h1>
 
-<div>
+<!--<div th:if="${#authorization.expression('isAuthenticated()')}">-->
+<!--    <h1 th:inline="text"><span th:text="${#authentication.username}"></span>, You are allowed here.</h1>-->
+<!--</div>-->
+
+
+<!--<span sec:authentication="principal.authorities">Roles</span>-->
+<!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
+<div sec:authorize="hasAuthority('Admin')">
     <p><a href="/admin">Sectiunea admin</a></p>
 </div>
-<div>
-    <p><a href="/student">Sectiunea studenti</a></p>
+<!--<div sec:authorize="hasRole('ROLE_STUDENT')">-->
+<div sec:authorize="hasAuthority('Student')">
+    <p><a th:href="@{/student/{username}(username=${#authentication.getPrincipal().getUsername()})}">Sectiunea studenti</a></p>
 </div>
-<div>
-    <p><a href="/professor">Sectiunea profesori</a></p>
+<!--<div sec:authorize="hasRole('ROLE_PROFESSOR')">-->
+<div sec:authorize="hasAuthority('Professor')">
+    <p><a th:href="@{/professor/{username}(username=${#authentication.getPrincipal().getUsername()})}">Sectiunea profesori</a></p>
 </div>
 
 

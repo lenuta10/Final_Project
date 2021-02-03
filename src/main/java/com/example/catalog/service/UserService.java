@@ -26,4 +26,8 @@ public interface UserService {
 
     String login(LoginDto loginDto);
 
+    User findByUsername(String username);
+
+
+
 }

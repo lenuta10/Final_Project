@@ -8,6 +8,8 @@ public interface CourseService {
 
     Iterable<Course> getAll();
 
+//    Iterable<Course> getAllCorsesByStudent(Long id);
+
     void add(Course course);
 
     void delete(Course course);
@@ -15,4 +17,6 @@ public interface CourseService {
     void save(Course course);
 
     Optional<Course> findById(Long id);
+
+    boolean existsById(Long id);
 }

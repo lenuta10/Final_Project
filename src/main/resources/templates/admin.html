@@ -2,6 +2,8 @@
 <html xmlns = "http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org"
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
+<a href="/" style="cursor:pointer">Acasa</a> | <a onclick="document.forms['logoutForm'].submit()" style="cursor:pointer">Logout</a>
+
 <div th:switch="${users}">
     <h2 th:case="null">No users yet!</h2>
     <div th:case="*">
@@ -15,7 +17,7 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Username</th>
-                <th>Password</th>
+<!--                <th>Password</th>-->
                 <th>Group</th>
                 <th>Courses</th>
                 <th>Edit</th>
@@ -30,7 +32,7 @@
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.role}"></td>
                 <td th:text="${user.username}"></td>
-                <td th:text="${user.password}"></td>
+<!--                <td th:text="${user.password}"></td>-->
                 <td th:text="${user.group.name}"></td>
                 <td>
 				<span th:each="courseRegistration,iterStat : ${user.courseRegistrations}">

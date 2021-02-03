@@ -3,7 +3,6 @@ package com.example.catalog.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 
 @Data
 @Entity
@@ -13,11 +12,11 @@ public class CourseRegistration {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "course_id")
     private Course course;
 

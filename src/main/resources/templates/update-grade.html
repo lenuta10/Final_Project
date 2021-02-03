@@ -1,0 +1,26 @@
+<form action="#"
+      th:action="@{/updateGrade/{id}(id=${courseRegistration.id})}"
+      th:object="${courseRegistration}"
+      method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div>
+        Student: <b th:text="${courseRegistration.user.firstName}" ></b> <b th:text="${courseRegistration.user.lastName}" > </b>
+    </div>
+    <br>
+    <div>
+        Curs: <span th:text="${courseRegistration.course.name}" ></span>
+    </div>
+    <br>
+    <div>
+        <label for="grade">Nota</label>
+        <input type="text" th:field="*{grade}" id="grade" placeholder="Nota">
+        <span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}"></span>
+
+        <input type="hidden" name="user" th:value="${courseRegistration.user.id}" />
+        <input type="hidden" name="course" th:value="${courseRegistration.course.id}" />
+
+    </div>
+    <br>
+    <div>
+        <input type="submit" value="Update Grade">
+    </div>
+</form>

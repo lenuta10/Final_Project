@@ -21,6 +21,9 @@
     <div>
         <label> Password: <input type = "password" name = "password"/> </label>
     </div>
+<!--    <span class="has-error" th:text="${error}"></span>-->
+
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <br>
     <div>
         <input type = "submit" value = "Sign In"/>

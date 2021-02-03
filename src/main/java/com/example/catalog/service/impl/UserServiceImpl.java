@@ -5,10 +5,13 @@ import com.example.catalog.dto.LoginDto;
 import com.example.catalog.repository.UserRepository;
 import com.example.catalog.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -16,6 +19,9 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public Iterable<User> getAll() {
@@ -44,6 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user)
     {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -60,4 +67,12 @@ public class UserServiceImpl implements UserService {
         }
         return "Welcome " + user.getFirstName() + " " + user.getLastName();
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.getUserByUsername(username);
+    }
+
+
+
 }

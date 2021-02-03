@@ -3,16 +3,20 @@ package com.example.catalog.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "users")
 public class User {
@@ -43,11 +47,12 @@ public class User {
     private String password;
 
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy = "user")
-    private List<CourseRegistration> courseRegistrations;
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "user", cascade=CascadeType.ALL)
+//    private Set<CourseRegistration> courseRegistrations = new HashSet<>();
+    private List<CourseRegistration> courseRegistrations = new ArrayList<>();
 
     @ManyToOne()
-    @JoinColumn(name="class_id")
+    @JoinColumn(name="class_id", columnDefinition = "integer default 0")
     private Group group;
 
 }

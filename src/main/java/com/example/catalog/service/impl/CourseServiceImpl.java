@@ -42,4 +42,18 @@ public class CourseServiceImpl implements CourseService {
     public void save(Course course) {
         courseRepository.save(course);
     }
+
+    @Override
+    public boolean existsById(Long id)
+    {
+        return courseRepository.existsById(id);
+    }
+
+//    @Override
+//    Iterable<Course> getAllCorsesByStudent(Long id)
+//    {
+//
+//    }
+
+
 }
