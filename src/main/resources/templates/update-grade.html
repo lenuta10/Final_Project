@@ -1,5 +1,5 @@
 <form action="#"
-      th:action="@{/updateGrade/{id}(id=${courseRegistration.id})}"
+      th:action="@{/updateGrade/{username}(username=${#authentication.getPrincipal().getUsername()})}"
       th:object="${courseRegistration}"
       method="post" xmlns:th="http://www.w3.org/1999/xhtml">
     <div>
@@ -17,6 +17,7 @@
 
         <input type="hidden" name="user" th:value="${courseRegistration.user.id}" />
         <input type="hidden" name="course" th:value="${courseRegistration.course.id}" />
+        <input type="hidden" name="id" th:value="${courseRegistration.id}" />
 
     </div>
     <br>

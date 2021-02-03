@@ -56,6 +56,18 @@
     </div>
     <br>
     <div>
+        <tr>
+            <td>Courses</td>
+            <td>
+                <th:block th:each="course : ${courses}">
+                    <input type="checkbox" name="cRegistrations" th:value="${course.id}">
+                    <label th:text="${course.name}"></label>
+                </th:block>
+            </td>
+        </tr>
+    </div>
+    <br>
+    <div>
         <input type="submit" value="Update User">
     </div>
 </form>

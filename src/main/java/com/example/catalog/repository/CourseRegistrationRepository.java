@@ -3,6 +3,7 @@ package com.example.catalog.repository;
 
 import com.example.catalog.domain.CourseRegistration;
 import com.example.catalog.domain.User;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -19,4 +20,7 @@ public interface CourseRegistrationRepository extends CrudRepository<CourseRegis
     @Query("SELECT c FROM CourseRegistration c WHERE c.user.role = :role and c.course.id = :id order by c.course.name, c.user.firstName")
     List<CourseRegistration> getCourseRegistrationByUserRole(@Param("role") String role, @Param("id") Long id);
 
+    @Modifying
+    @Query("DELETE FROM CourseRegistration c WHERE c.user.id = :user_id")
+    void deleteCourseRegistrationByUserAndCourse(@Param("user_id") Long user_id);
 }

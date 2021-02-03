@@ -46,12 +46,10 @@ public class User {
     @NotBlank(message = "Password is mandatory")
     private String password;
 
-
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "user", cascade=CascadeType.ALL)
-//    private Set<CourseRegistration> courseRegistrations = new HashSet<>();
     private List<CourseRegistration> courseRegistrations = new ArrayList<>();
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name="class_id", columnDefinition = "integer default 0")
     private Group group;
 

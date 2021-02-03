@@ -2,7 +2,13 @@
 <html xmlns = "http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org"
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<a href="/" style="cursor:pointer">Acasa</a> | <a onclick="document.forms['logoutForm'].submit()" style="cursor:pointer">Logout</a>
+<div>
+    <form id="logoutForm" method="POST" th:action="@{/logout}">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+    <a href="/" style="cursor:pointer">Acasa</a> | <a onclick="document.forms['logoutForm'].submit()" style="cursor:pointer">Logout</a>
+    <!--<a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>-->
+</div>
 
 <div th:switch="${users}">
     <h2 th:case="null">No users yet!</h2>

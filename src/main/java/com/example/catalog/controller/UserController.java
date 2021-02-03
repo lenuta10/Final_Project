@@ -7,6 +7,7 @@ import com.example.catalog.service.SecurityService;
 import com.example.catalog.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -73,6 +74,7 @@ public class UserController {
 
         model.addAttribute("user", user);
         model.addAttribute("classes", groupService.getAll());
+        model.addAttribute("courses", courseService.getAll());
         return "update-user";
     }
 
@@ -87,18 +89,36 @@ public class UserController {
 
     @PostMapping("/update/{id}")
     public String updateUser(@PathVariable("id") long id, User user,
-                             BindingResult result, Model model) {
+                             BindingResult result, Model model,
+                             @RequestParam(value = "cRegistrations" , required = false) Long[] cRegistrations) {
         if (result.hasErrors()) {
             user.setId(id);
             return "update-user";
+        }
+
+        courseRegistrationService.deleteCourseRegistrationByUserAndCourse(user.getId());
+        if(cRegistrations != null) {
+            CourseRegistration courseRegistration;
+            Course course;
+            User newuser;
+            for (Long registration : cRegistrations) {
+                if (courseService.existsById(registration)) {
+                    course = courseService.findById(registration).get();
+                    newuser = userService.findById(user.getId()).get();
+                    courseRegistration = new CourseRegistration();
+                    courseRegistration.setCourse(course);
+                    courseRegistration.setUser(newuser);
+                    courseRegistrationService.save(courseRegistration);
+                }
+            }
         }
 
         userService.save(user);
         return "redirect:/admin";
     }
 
-    @PostMapping("/updateGrade/{id}")
-    public String updateCourseRegistration(@PathVariable("id") long id, CourseRegistration courseRegistration,
+    @PostMapping("/updateGrade/{username}")
+    public String updateCourseRegistration(@RequestParam long id, @PathVariable("username") String username,CourseRegistration courseRegistration,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             courseRegistration.setId(id);
@@ -106,7 +126,7 @@ public class UserController {
         }
 
         courseRegistrationService.save(courseRegistration);
-        return "redirect:/professor";
+        return "redirect:/professor/"+username;
     }
 
     @GetMapping("/delete/{id}")
@@ -121,7 +141,7 @@ public class UserController {
 
         model.addAttribute("courseRegistrations", courseRegistrationService.getCourseRegistrations(username));
 
-        return "redirect:/student";
+        return "student";
     }
 
     @GetMapping("/professor/{username}")

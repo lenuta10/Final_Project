@@ -18,4 +18,7 @@ public interface CourseRegistrationService {
 
     List<CourseRegistration> getFinalList(String username);
 
+    void deleteCourseRegistrationByUserAndCourse(Long user_id);
+
+
 }

@@ -47,21 +47,11 @@
     </div>
     <br>
     <div>
-<!--        <label for="courseRegistrations">Courses:-->
-<!--            <input type="checkbox" name="courseRegistrations" id="courseRegistrations"-->
-<!--                   th:each="course : ${courses}"-->
-<!--                   th:text="${course.name}"-->
-<!--                   th:value="${course.id}"-->
-<!--                   th:field="*{courseRegistrations}"-->
-<!--            />-->
-<!--        </label>-->
-
         <tr>
             <td>Courses</td>
             <td>
                 <th:block th:each="course : ${courses}">
-<!--                    <input type="checkbox" name="cRegistrations" th:value="${course.id}"/>-->
-                    <input type="checkbox" name="courseRegistrations" th:value="${course.id}"/>
+                    <input type="checkbox" name="courseRegistrations" th:value="${course.id}">
                     <label th:text="${course.name}"></label>
                 </th:block>
             </td>
