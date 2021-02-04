@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <title>Hello professor!</title>
+</head>
+<body>
+<div>
+    <form id="logoutForm" method="POST" th:action="@{/logout}">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+    <a href="/" style="cursor:pointer">Acasa</a> | <a onclick="document.forms['logoutForm'].submit()" style="cursor:pointer">Logout</a>
+    <!--<a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>-->
+</div>
+<div th:switch="${courseRegistrations}">
+    <h2 th:case="null">Nu aveti studenti inregistrati la niciun curs!</h2>
+    <div th:case="*">
+        <h2>Cursuri</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Denumire curs</th>
+                <th>Numar de credite</th>
+                <th>Nume student</th>
+                <th>Nota</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="courseRegistration : ${courseRegistrations}">
+                <td th:text="${courseRegistration.course.getName()}"></td>
+                <td th:text="${courseRegistration.course.getNumberOfCredits()}"></td>
+                <td th:text="${courseRegistration.user.getFirstName()} + ' ' + ${courseRegistration.user.getLastName()}"></td>
+                <td th:text="${courseRegistration.getGrade()}"></td>
+                <td><a th:href="@{/editGrade/{id}(id=${courseRegistration.getId()})}">Edit</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+
+</html>
