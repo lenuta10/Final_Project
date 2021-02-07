@@ -39,7 +39,10 @@
                 <td th:text="${user.role}"></td>
                 <td th:text="${user.username}"></td>
 <!--                <td th:text="${user.password}"></td>-->
-                <td th:text="${user.group.name}"></td>
+                <td th:switch="${user.group}">
+                    <span th:case="null">Nu face parte dintr-o grupa</span>
+                    <span th:case="*" th:text="${user.group.name}"></span>
+                </td>
                 <td>
 				<span th:each="courseRegistration,iterStat : ${user.courseRegistrations}">
 					<span th:text="${courseRegistration.course.name}"/><th:block th:if="${!iterStat.last}">,</th:block>

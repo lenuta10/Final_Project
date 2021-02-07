@@ -50,7 +50,7 @@ public class User {
     private List<CourseRegistration> courseRegistrations = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name="class_id", columnDefinition = "integer default 0")
+    @JoinColumn(name="class_id")
     private Group group;
 
 }
