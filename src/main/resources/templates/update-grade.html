@@ -2,6 +2,7 @@
       th:action="@{/updateGrade/{username}(username=${#authentication.getPrincipal().getUsername()})}"
       th:object="${courseRegistration}"
       method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <body style="background-color:lightsteelblue;">
     <div>
         Student: <b th:text="${courseRegistration.user.firstName}" ></b> <b th:text="${courseRegistration.user.lastName}" > </b>
     </div>

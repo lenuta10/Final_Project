@@ -2,6 +2,7 @@
       th:action="@{/updateCourse/{id}(id=${course.id})}"
       th:object="${course}"
       method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <body style="background-color:lightsteelblue;">
     <div>
         <label for="name">Name</label>
         <input type="text" th:field="*{name}" id="name" placeholder="Name">
